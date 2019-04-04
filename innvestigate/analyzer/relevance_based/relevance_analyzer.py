@@ -188,7 +188,7 @@ LRP_RULES = {
 
 class EmbeddingReverseLayer(kgraph.ReverseMappingBase):
     def __init__(self, layer, state):
-        print("in EmbeddingReverseLayer.init:", layer.__class__.__name__,"-> Dedicated ReverseLayer class" ) #debug
+        ## print("in EmbeddingReverseLayer.init:", layer.__class__.__name__,"-> Dedicated ReverseLayer class" ) #debug
         #TODO: implement rule support.
 
     def apply(self, Xs, Ys, Rs, reverse_state):
@@ -200,7 +200,7 @@ class EmbeddingReverseLayer(kgraph.ReverseMappingBase):
         # over the vector axis.
 
         #relevances are given shaped [batch_size, sequence_length, embedding_dims]
-        print(Rs)
+        
         pool_relevance = keras.layers.Lambda(lambda x: keras.backend.sum(x, axis=-1))
         return [pool_relevance(r) for r in Rs]
 
